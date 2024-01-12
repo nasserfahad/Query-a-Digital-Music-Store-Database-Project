@@ -1,0 +1,52 @@
+STEP 1
+/*The TOP 10 Artist who recorded most Albums*/
+
+SELECT Artist.Name, COUNT(Album.Title) as Total_Album
+FROM Artist
+JOIN Album
+on Artist.ArtistId=Album.ArtistId
+GROUP by Artist.Name
+ORDER by 2 DESC
+LIMIT 10
+
+-----------------------------------------------------------------------------------------------
+STEP 2
+/*Total numbers of Track for each Artist in the TOP 10*/
+
+SELECT Artist.Name, count(Track.Name) Total_of_Track
+FROM Artist
+JOIN Album
+on Artist.ArtistId=Album.ArtistId
+JOIN Track
+on Track.AlbumId=Album.AlbumId
+WHERE Artist.Name In ("Iron Maiden", "Led Zeppelin", "Deep Purple", "U2", "Metallica", "Ozzy Osbourne", "Pearl Jam", "Various Artists", "Van Halen", "Lost")
+GROUP by 1
+ORDER by 2 DESC
+
+-----------------------------------------------------------------------------------------------
+STEP 3
+/*The total price of tracks for each Artist in the TOP 10*/
+
+SELECT Artist.Name, sum(Track.UnitPrice) as Price
+FROM Artist
+JOIN Album
+on Artist.ArtistId=Album.ArtistId
+JOIN Track
+on Track.AlbumId=Album.AlbumId
+WHERE Artist.Name In ("Iron Maiden", "Led Zeppelin", "Deep Purple", "U2", "Metallica", "Ozzy Osbourne", "Pearl Jam", "Various Artists", "Van Halen", "Lost")
+GROUP by 1
+ORDER by 2 DESC
+
+----------------------------------------------------------------------------------------------
+STEP 4 
+/*The average Milliseconds of a track for Albums for each Artist in the TOP 10?*/
+
+SELECT Artist.Name, avg(Track.Milliseconds) as Avarge_of_Milliseconds
+FROM Artist
+JOIN Album
+on Artist.ArtistId=Album.ArtistId
+JOIN Track
+on Track.AlbumId=Album.AlbumId
+WHERE Artist.Name In ("Iron Maiden", "Led Zeppelin", "Deep Purple", "U2", "Metallica", "Ozzy Osbourne", "Pearl Jam", "Various Artists", "Van Halen", "Lost")
+GROUP by 1
+ORDER by 2 DESC
